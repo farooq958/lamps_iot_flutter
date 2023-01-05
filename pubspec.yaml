@@ -1,0 +1,48 @@
+name: keptua
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: '>=2.18.2 <3.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  smooth_page_indicator: ^1.0.0+2     #for small dots at introduction screen
+  flutter_screenutil: ^5.6.0          #for responsiveness
+  flutter_bloc: ^8.1.1                #for state management
+  http: ^0.13.4                       #for api requests
+  intl: ^0.17.0                       #for time format
+  device_preview: ^1.1.0              #for testing content on different devices
+  google_fonts: ^3.0.1                #for font of the design
+  flutter_colorpicker: ^1.0.3         #flutter color picker
+  network_info_plus: ^3.0.1           #for fetching wifi GatewayIP
+  shared_preferences: ^2.0.15         #for local DB storing simple values
+  sqflite: ^2.2.0+3                   #for local DB CRUD operations
+#  mic_stream: ^0.6.2                 #for audio stream of device speaker
+  on_audio_query: ^2.6.1              #for fetching device songs
+  permission_handler: ^10.2.0         #for getting user permission for fetching songs
+  just_audio: ^0.9.30                 #for playing song
+  audio_waveforms: ^0.1.5+1            #for showing audio waves with song playing
+  path_provider: ^2.0.11              #for setting the selected song path to show waves
+  #just_waveform: ^0.0.3
+  #path_provider_ex: ^1.0.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: AppIcons
+      fonts:
+        - asset: assets/icons/AppIcons.ttf
+#
+#    - family: Mulish
+#      fonts:
+#        - asset: assets/fonts/Mulish-Black.ttf
