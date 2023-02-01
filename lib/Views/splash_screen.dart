@@ -26,14 +26,14 @@ class _SplashScreenState extends State<SplashScreen> {
           ScalePageTransition.scalePageTransition(
             page: SharedPrefs.getInitPage() == null
                 ? const IntroductionPageView()
-                : SharedPrefs.getInitPage() == 'favorite_colors_screen'
-                    ? FavoriteColorsScreen(
-                        theme: SharedPrefs.getTheme(),
-                      )
-                    : SharedPrefs.getInitPage() == 'audio'
-                        ? MainAudioPlayerScreen(
-                            theme: SharedPrefs.getTheme(),
-                          )
+                // : SharedPrefs.getInitPage() == 'favorite_colors_screen'
+                //     ? FavoriteColorsScreen(
+                //         theme: SharedPrefs.getTheme(),
+                //       )
+                //     : SharedPrefs.getInitPage() == 'audio'
+                //         ? MainAudioPlayerScreen(
+                //             theme: SharedPrefs.getTheme(),
+                //           )
                         : const MainScreen(),
             alignment: Alignment.center,
           ),

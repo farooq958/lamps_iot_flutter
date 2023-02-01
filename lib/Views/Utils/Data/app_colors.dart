@@ -12,4 +12,5 @@ class AppColors {
   static const Color greyTwo = Color(0xffC4C4C4);
   static const Color greyThree = Color(0xff646060);
   static const Color whiteTwo = Color(0xffF5F5F5);
+  static const Color greyCopyright= Color(0xff292929);
 }

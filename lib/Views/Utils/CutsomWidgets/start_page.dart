@@ -188,7 +188,7 @@ class StartPage extends StatelessWidget {
             ),
             SizedBox(height: 55.4.sp),
             Container(
-              padding: EdgeInsets.only(left: 440.sp),
+              padding: EdgeInsets.only(left: 440.w),
               alignment: Alignment.centerLeft,
               child: Text(
                 AppStrings.introTitle,
@@ -202,7 +202,7 @@ class StartPage extends StatelessWidget {
             ),
             SizedBox(height: 15.0.sp),
             Container(
-              padding: EdgeInsets.only(left: 450.sp),
+              padding: EdgeInsets.only(left: 450.w),
               alignment: Alignment.centerLeft,
               child: Text(
                 AppStrings.introDescription,
@@ -215,7 +215,40 @@ class StartPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 130.0.sp),
+            SizedBox(height: 80.0.sp),
+//             Container(
+//               padding: EdgeInsets.only(left: 420.sp),
+//               alignment: Alignment.centerLeft,
+//               child: Text("Wifi IP Address",textAlign: TextAlign.left,style: GoogleFonts.poppins(
+//                   fontSize: 10.sp,fontWeight: FontWeight.w400,
+//                   color:
+//               theme! ? AppColors.black : AppColors.white),),
+//             ),
+//             Padding(
+//               padding: EdgeInsets.only(left: 410.sp,right: 410.sp),
+//               child: SizedBox(
+//                 width: 100.sp,
+//                 height: 50.sp,
+//                 child: Container(
+//                   padding: EdgeInsets.only(left: 10.sp),
+//                   alignment: Alignment.centerLeft,
+//                  // width: 351.sp,
+//
+//                   height: 44.sp,
+//                   decoration: BoxDecoration(
+//                     border: Border.all(
+// color: AppColors.lightYellow
+//
+//                     ),
+//                     borderRadius: BorderRadius.circular(14.sp)
+//
+//                   ),
+//                   child: Text(Repository.wifiGateWayIP.toString(),
+//                     style: GoogleFonts.poppins(fontWeight: FontWeight.w400,fontSize: 14.sp,color: AppColors.yellow ),),
+//
+//                 ),
+//               ),
+//             )
 
             // Container(
             //   padding: EdgeInsets.only(left: 440.sp),

@@ -26,22 +26,24 @@ class FirstScreen extends StatelessWidget {
           //image
           Image.asset(
             AppImages.intro_01,
-            height: 339.sp,
-            width: 338.33.sp,
+            height: 300.sp,
+           // width: 338.33.sp,
           ),
-          SizedBox(height: 58.sp),
+          SizedBox(height: 50.sp),
 
           //title
           Container(
             padding: EdgeInsets.only(left: 54.sp),
             alignment: Alignment.centerLeft,
-            child: Text(
-              AppStrings.introFirstTitle,
-              textAlign: TextAlign.left,
-              style: GoogleFonts.roboto(
-                fontWeight: FontWeight.w700,
-                fontSize: 25.sp,
-                color: AppColors.black,
+            child: FittedBox(
+              child: Text(
+                AppStrings.introFirstTitle,
+                textAlign: TextAlign.left,
+                style: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 25.sp,
+                  color: AppColors.black,
+                ),
               ),
             ),
           ),
@@ -51,14 +53,16 @@ class FirstScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(left: 55.sp),
             alignment: Alignment.centerLeft,
-            child: Text(
-              AppStrings.introFirstDescription,
-              textAlign: TextAlign.left,
-              style: GoogleFonts.roboto(
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w400,
-                fontSize: 14.sp,
-                color: AppColors.black,
+            child:  FittedBox(
+              child: Text(
+                AppStrings.introFirstDescription,
+                textAlign: TextAlign.left,
+                style: GoogleFonts.roboto(
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14.sp,
+                  color: AppColors.black,
+                ),
               ),
             ),
           ),

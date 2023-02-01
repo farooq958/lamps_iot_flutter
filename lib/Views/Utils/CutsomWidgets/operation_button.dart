@@ -58,7 +58,7 @@ class _OperationButtonsState extends State<OperationButtons> {
       ),
       child: Wrap(
         runSpacing: 20.sp,
-        spacing: 10.sp,
+        spacing: 7.sp,
         alignment: WrapAlignment.center,
         children: choiceChips
             .map((choiceChip) => ChoiceChip(
@@ -72,15 +72,15 @@ class _OperationButtonsState extends State<OperationButtons> {
                     height: 30.sp,
                     width: 80.sp,
                     alignment: Alignment.center,
-                    child: Text(choiceChip.label),
+                    child: Text(choiceChip.label,style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.bold),),
                   ),
                   labelStyle: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     color: choiceChip.isSelected && widget.theme! == false
-                        ? AppColors.yellow
-                        : !choiceChip.isSelected && widget.theme! == true
-                            ? AppColors.yellow
-                            : AppColors.white,
+                        ? AppColors.white
+                        : choiceChip.isSelected && widget.theme! == true
+                            ? AppColors.white
+                            : AppColors.yellow,
                     fontStyle: FontStyle.normal,
                     fontSize: 18.sp,
                   ),
@@ -94,7 +94,7 @@ class _OperationButtonsState extends State<OperationButtons> {
                   ),
                   selected: choiceChip.isSelected,
                   selectedColor:
-                      widget.theme! ? AppColors.yellow : AppColors.themeBlack,
+                      widget.theme! ? AppColors.yellow : AppColors.yellow,
                   backgroundColor:
                       widget.theme! ? AppColors.white : AppColors.themeBlack,
                   onSelected: (isSelected) {

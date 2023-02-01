@@ -13,6 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keptua/Views/Utils/Data/app_providers.dart';
 import 'package:keptua/Views/Utils/Data/app_shared_preferences.dart';
 import 'package:keptua/Views/splash_screen.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 // Sets a platform override for desktop to avoid exceptions.
 void _enablePlatformOverrideForDesktop() {
@@ -44,13 +45,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(414, 896),
+      designSize: const Size(414, 896),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return MultiBlocProvider(
           providers: mainCubitProvidersList,
-          child: const MaterialApp(
+          child:  const MaterialApp(
             useInheritedMediaQuery: true,
             // locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,

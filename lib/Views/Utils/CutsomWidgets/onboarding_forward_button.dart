@@ -5,6 +5,7 @@ import 'package:keptua/Views/MainScreenViews/main_screen.dart';
 import 'package:keptua/Views/Utils/Data/app_colors.dart';
 import 'package:keptua/Views/Utils/Data/app_shared_preferences.dart';
 import 'package:keptua/Views/Utils/PageTransitions/slide_page_transition.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class IntroForwardButton extends StatelessWidget {
   final int? introPageState;
@@ -35,7 +36,11 @@ class IntroForwardButton extends StatelessWidget {
             Navigator.push(
               context,
               CustomSlidePageRoute(
-                child: const MainScreen(),
+                child: ShowCaseWidget(
+
+                builder: Builder(builder: (context)=>  const MainScreen())),
+                // child:  ShowCaseWidget(builder: Builder(builder: (_)=>const MainScreen())),
+
                 direction: AxisDirection.left,
               ),
             );

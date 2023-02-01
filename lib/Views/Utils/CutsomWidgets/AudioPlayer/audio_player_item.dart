@@ -1,12 +1,13 @@
-import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keptua/Controllers/Cubits/AudioPlayerCubits/item_wave_cubit.dart';
 import 'package:keptua/Controllers/Repositories/repository.dart';
 import 'package:keptua/Views/Utils/Data/app_colors.dart';
 import 'package:keptua/Views/Utils/Data/app_images.dart';
+
 
 class AudioPlayerItem extends StatelessWidget {
   final bool? theme;
@@ -17,7 +18,8 @@ class AudioPlayerItem extends StatelessWidget {
   final void Function()? onTap;
   final bool? playPauseState;
   final int? songIndex;
-
+  //final progressStream;
+  final double pitch;
   const AudioPlayerItem({
     super.key,
     required this.theme,
@@ -28,10 +30,15 @@ class AudioPlayerItem extends StatelessWidget {
     required this.onTap,
     required this.playPauseState,
     required this.songIndex,
+   // required this.progressStream,
+    required this.pitch
   });
 
   @override
   Widget build(BuildContext context) {
+  //  final progressStream2 = BehaviorSubject<WaveformProgress>();
+//Repository.init(progressStream2);
+
     return InkWell(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
@@ -108,32 +115,83 @@ class AudioPlayerItem extends StatelessWidget {
               child: BlocBuilder<ItemWaveCubit, int>(
                 builder: (context, itemWaveState) {
                   return !playPauseState!
-                      ? const SizedBox()
+                      ? Container(
+                    color: theme!
+                        ? AppColors.white
+                        : AppColors.themeBlack,
+                  )
                       : ind != itemWaveState
-                          ? const SizedBox()
+                          ?  Container(
+                    color: theme!
+                        ? AppColors.white
+                        : AppColors.themeBlack,
+                  )
                           : Container(
                               alignment: Alignment.center,
-                              color: theme!
+                              color:theme!
                                   ? AppColors.white
                                   : AppColors.themeBlack,
-                              child: AudioWaveforms(
-                                size: Size(70.sp, 50.sp),
-                                recorderController:
-                                    Repository.waveformController,
-                                enableGesture: false,
-                                waveStyle: WaveStyle(
-                                  showDurationLabel: false,
-                                  spacing: 8.sp,
-                                  showBottom: false,
-                                  extendWaveform: true,
-                                  showMiddleLine: false,
-                                  waveThickness: 5.sp,
-                                  waveColor: AppColors.yellow,
-                                  backgroundColor: theme!
-                                      ? AppColors.white
-                                      : AppColors.themeBlack,
-                                ),
-                              ),
+
+child: Text(pitch.toString()),
+// child: Visualizer(
+//   builder: (BuildContext context, List<int> wave) {
+//     return CustomPaint(
+//       painter: LineVisualizer(
+//         waveData: Repository.wavedata,
+//         height: MediaQuery.of(context).size.height,
+//         width : MediaQuery.of(context).size.width,
+//         color: Colors.blueAccent,
+//       ),
+//       child: Container(),
+//     );
+//   },
+//   id: Repository.audioPlayer.androidAudioSessionId,
+// ),
+// child: StreamBuilder<WaveformProgress>(
+//   stream: progressStream2,
+//   builder: (context, snapshot) {
+//     print(snapshot.error);
+//     if (snapshot.hasError) {
+//       return Center(
+//         child: Text(
+//           'Error: ${snapshot.error}',
+//           style: Theme.of(context).textTheme.headline6,
+//           textAlign: TextAlign.center,
+//         ),
+//       );
+//     }
+//     final progress = snapshot.data?.progress ?? 0.0;
+//     final waveform = snapshot.data?.waveform;
+//     if (waveform == null) {
+//       return Center(
+//         child: Text(
+//           '${(100 * progress).toInt()}%',
+//           style: Theme.of(context).textTheme.headline6,
+//         ),
+//       );
+//     }
+//     return AudioWaveformWidget(
+//       waveform: waveform,
+//       start: Duration.zero,
+//       duration: waveform.duration,
+//     );
+//   },
+// ),
+                              // child: PolygonWaveform(samples: [], height: 50.sp, width: 30.sp,),
+
+                              //   child: AudioFileWaveforms(
+                              //   size: Size(70.sp, 50.sp),
+                              //   playerController:
+                              //       Repository.playerController,
+                              //
+                              //     density: 1.5,
+                              //     playerWaveStyle: const PlayerWaveStyle(
+                              //       scaleFactor: 0.8,
+                              //       fixedWaveColor: Colors.white30,
+                              //       liveWaveColor: Colors.white,
+                              //       waveCap: StrokeCap.butt,
+                              //     ),
+                              // ),
                             );
                 },
               ),

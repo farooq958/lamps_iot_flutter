@@ -18,17 +18,17 @@ class SharedPrefs {
   /// Set & Get power methods
   static Future<bool> setPower({required bool power}) async =>
       await _preferences!.setBool(AppStrings.power, power);
-  static bool? getPower() => _preferences!.getBool(AppStrings.power);
+  static bool? getPower() => _preferences!.getBool(AppStrings.power)??true;
 
   /// Set & Get theme methods
   static Future<bool> setTheme({required bool theme}) async =>
       await _preferences!.setBool(AppStrings.theme, theme);
-  static bool? getTheme() => _preferences!.getBool(AppStrings.theme);
+  static bool? getTheme() => _preferences!.getBool(AppStrings.theme)??true;
 
   /// Set & Get color methods
   static Future setColor({required int? color}) async =>
       await _preferences!.setInt(AppStrings.color, color!);
-  static int? getColor() => _preferences!.getInt(AppStrings.color);
+  static int? getColor() => _preferences!.getInt(AppStrings.color)??0xfffffffE;
 
   /// Set & Get default color index
   static Future setDefaultColorIndex({required int? defaultColorIndex}) async =>

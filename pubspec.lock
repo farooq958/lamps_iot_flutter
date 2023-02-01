@@ -22,13 +22,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.13"
-  audio_waveforms:
-    dependency: "direct main"
-    description:
-      name: audio_waveforms
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.5+1"
   bloc:
     dependency: transitive
     description:
@@ -449,7 +442,7 @@ packages:
     source: hosted
     version: "6.0.4"
   rxdart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
@@ -511,6 +504,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  showcaseview:
+    dependency: "direct main"
+    description:
+      name: showcaseview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0+1"
   sky_engine:
     dependency: transitive
     description: flutter

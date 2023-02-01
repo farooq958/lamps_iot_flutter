@@ -23,10 +23,12 @@ dependencies:
   on_audio_query: ^2.6.1              #for fetching device songs
   permission_handler: ^10.2.0         #for getting user permission for fetching songs
   just_audio: ^0.9.30                 #for playing song
-  audio_waveforms: ^0.1.5+1            #for showing audio waves with song playing
   path_provider: ^2.0.11              #for setting the selected song path to show waves
-  #just_waveform: ^0.0.3
+
   #path_provider_ex: ^1.0.1
+  rxdart: ^0.27.0
+  showcaseview: ^2.0.0+1
+  #sound_stream: ^0.3.0
 
 
 dev_dependencies:
@@ -37,7 +39,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
-
+    - assets/audio/
   fonts:
     - family: AppIcons
       fonts:

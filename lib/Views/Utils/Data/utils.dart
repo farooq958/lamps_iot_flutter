@@ -56,7 +56,7 @@ class Utils {
     required bool theme,
   }) {
     final customSnackBar = SnackBar(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 500),
       content: Text(
         message,
         style: GoogleFonts.poppins(

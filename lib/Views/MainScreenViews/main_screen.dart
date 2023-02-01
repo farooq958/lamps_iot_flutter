@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:keptua/Controllers/Cubits/power_cubit.dart';
 import 'package:keptua/Controllers/Cubits/theme_cubit.dart';
 import 'package:keptua/Controllers/Repositories/repository.dart';
 import 'package:keptua/Views/Utils/CutsomWidgets/app_bar.dart';
 import 'package:keptua/Views/Utils/CutsomWidgets/circle_color_picker.dart';
-import 'package:keptua/Views/Utils/CutsomWidgets/custom_opacity_container.dart';
 import 'package:keptua/Views/Utils/CutsomWidgets/defined_colors.dart';
 import 'package:keptua/Views/Utils/CutsomWidgets/music_button.dart';
 import 'package:keptua/Views/Utils/CutsomWidgets/operation_button.dart';
@@ -21,6 +21,8 @@ import 'package:keptua/Views/Utils/CutsomWidgets/user_favorite_colors.dart';
 import 'package:keptua/Views/Utils/Data/app_colors.dart';
 import 'package:keptua/Views/Utils/Data/app_shared_preferences.dart';
 import 'package:network_info_plus/network_info_plus.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -32,11 +34,24 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   String connectionStatus = 'Unknown';
   final NetworkInfo networkInfo = NetworkInfo();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey _first = GlobalKey();
+  final GlobalKey _second = GlobalKey();
+  final GlobalKey _third = GlobalKey();
+  final GlobalKey _fourth = GlobalKey();
+  final GlobalKey _fifth = GlobalKey();
   @override
   void initState() {
     super.initState();
     initNetworkInfo();
+    requestPermission();
+    // WidgetsBinding.instance.addPostFrameCallback(
+    //       (_) => ShowCaseWidget.of(context)
+    //       .startShowCase([_first, _second,_third,_fourth]),
+    //);
+    WidgetsBinding.instance.addPostFrameCallback(
+            (_) => ShowCaseWidget.of(context)
+            .startShowCase([_first, _second,_third,_fourth,_fifth]));
   }
 
   @override
@@ -51,150 +66,193 @@ class _MainScreenState extends State<MainScreen> {
               return response;
             },
             child: Scaffold(
+              key: _scaffoldKey,
               backgroundColor: SharedPrefs.getTheme() == true ||
                       SharedPrefs.getTheme() == null
                   ? AppColors.white
                   : AppColors.themeBlack,
               appBar: AppBar(
                 elevation: 0,
+
                 backgroundColor: SharedPrefs.getTheme() == true ||
                         SharedPrefs.getTheme() == null
                     ? AppColors.white
                     : AppColors.themeBlack,
                 actions: [
                   CustomAppBar(
+                    key1:_first,
                     power: powerState,
                     wifiGatewayIP: connectionStatus,
                     // networkInfo: initNetworkInfo(),
-                  )
+                  ),
                 ],
               ),
               body: Stack(
-                children: [
-                  Positioned(
-                    child: Container(
-                      height: 1.sh,
-                      width: 1.sw,
-                      color: SharedPrefs.getTheme() == true ||
-                              SharedPrefs.getTheme() == null
-                          ? AppColors.white
-                          : AppColors.themeBlack,
-                      //color: AppColors.white,
-                      child: ScrollConfiguration(
-                        behavior:
-                            const ScrollBehavior().copyWith(overscroll: false),
-                        child: ListView(
-                          padding: EdgeInsets.zero,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          children: [
-                            CircleColorPicker(
-                              // power: powerState,
-                              theme: SharedPrefs.getTheme() == true ||
-                                  SharedPrefs.getTheme() == null,
-                            ),
-
-                            //pre defined colors
-                            DefinedColors(
-                              // power: powerState,
-                              theme: SharedPrefs.getTheme() == true ||
-                                  SharedPrefs.getTheme() == null,
-                            ),
-                            Container(
-                              height: 15.sp,
+                  children: [
+                    Positioned(
+                      child: Container(
+                        height: 1.sh,
+                        width: 1.sw,
+                        color: SharedPrefs.getTheme() == true ||
+                            SharedPrefs.getTheme() == null
+                            ? AppColors.white
+                            : AppColors.themeBlack,
+                        //color: AppColors.white,
+                        child: ScrollConfiguration(
+                          behavior:
+                          const ScrollBehavior().copyWith(overscroll: false),
+                          child:  ListView(
                               padding: EdgeInsets.zero,
-                              color: SharedPrefs.getTheme() == true ||
-                                      SharedPrefs.getTheme() == null
-                                  ? AppColors.white
-                                  : AppColors.themeBlack,
-                            ),
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              children: [
+                                CircleColorPicker(
+                                  key1:_second,
+                                  key2:_third,
+                                  // power: powerState,
+                                  theme: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null,
+                                  //   scaffoldKey: _scaffoldKey,
+                                )
 
-                            //block Color Picker
-                            // const BlockColorPicker(),
-
-                            //user Favorite Colors
-                            UserFavoriteColors(
-                              theme: SharedPrefs.getTheme() == true ||
-                                  SharedPrefs.getTheme() == null,
-                            ),
-                            Container(
-                              height: 5.sp,
-                              color: SharedPrefs.getTheme() == true ||
+//SizedBox(height: 30.sp,),
+                                ,   //pre defined colors
+                                DefinedColors(
+                                  // power: powerState,
+                                  theme: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null,
+                                ),
+                                Container(
+                                  height: 15.sp,
+                                  padding: EdgeInsets.zero,
+                                  color: SharedPrefs.getTheme() == true ||
                                       SharedPrefs.getTheme() == null
-                                  ? AppColors.white
-                                  : AppColors.themeBlack,
-                            ),
+                                      ? AppColors.white
+                                      : AppColors.themeBlack,
+                                ),
 
-                            //custom opacity container
-                            CustomOpacityContainer(
-                              theme: SharedPrefs.getTheme() == true ||
-                                  SharedPrefs.getTheme() == null,
-                            ),
-                            Container(
-                              height: 20.sp,
-                              padding: EdgeInsets.zero,
-                              color: SharedPrefs.getTheme() == true ||
-                                      SharedPrefs.getTheme() == null
-                                  ? AppColors.white
-                                  : AppColors.themeBlack,
-                            ),
+                                //block Color Picker
+                                // const BlockColorPicker(),
 
-                            //audio player button
-                            MusicButton(
-                              power: powerState,
-                              theme: SharedPrefs.getTheme() == true ||
-                                  SharedPrefs.getTheme() == null,
-                            ),
-                            Container(
-                              height: 20.sp,
-                              padding: EdgeInsets.zero,
-                              color: SharedPrefs.getTheme() == true ||
-                                      SharedPrefs.getTheme() == null
-                                  ? AppColors.white
-                                  : AppColors.themeBlack,
-                            ),
+                                //user Favorite Colors
+                                UserFavoriteColors(
+                                  key3:_fourth,
+                                  key4:_fifth,
+                                  theme: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null,
+                                ),
 
-                            //operations button
-                            OperationButtons(
-                              power: powerState,
-                              theme: SharedPrefs.getTheme() == true ||
-                                  SharedPrefs.getTheme() == null,
-                            ),
-                            Container(
-                              height: 20.sp,
-                              padding: EdgeInsets.zero,
-                              color: SharedPrefs.getTheme() == true ||
+                                Container(
+                                  height: 5.sp,
+                                  color: SharedPrefs.getTheme() == true ||
                                       SharedPrefs.getTheme() == null
-                                  ? AppColors.white
-                                  : AppColors.themeBlack,
-                            ),
-                          ],
+                                      ? AppColors.white
+                                      : AppColors.themeBlack,
+                                ),
+
+                                //custom opacity container
+                                // CustomOpacityContainer(
+                                //   theme: SharedPrefs.getTheme() == true ||
+                                //       SharedPrefs.getTheme() == null,
+                                // ),
+                                Container(
+                                  height: 20.sp,
+                                  padding: EdgeInsets.zero,
+                                  color: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null
+                                      ? AppColors.white
+                                      : AppColors.themeBlack,
+                                ),
+
+                                //audio player button
+                                MusicButton(
+                                  power: powerState,
+                                  theme: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null,
+                                ),
+                                Container(
+                                  height: 20.sp,
+                                  padding: EdgeInsets.zero,
+                                  color: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null
+                                      ? AppColors.white
+                                      : AppColors.themeBlack,
+                                ),
+
+                                //operations button
+                                OperationButtons(
+                                  power: powerState,
+                                  theme: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null,
+                                ),
+                                Container(
+                                  height: 70.sp,
+                                  padding: EdgeInsets.zero,
+                                  color: SharedPrefs.getTheme() == true ||
+                                      SharedPrefs.getTheme() == null
+                                      ? AppColors.white
+                                      : AppColors.themeBlack,
+                                ),
+                              ],
+                            )
+                           ,
                         ),
                       ),
                     ),
-                  ),
-                  AnimatedPositioned(
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.easeInOut,
-                    top: SharedPrefs.getPower() == true ? -1.sh : 0,
-                    left: SharedPrefs.getPower() == true ? 0 : -1.sw,
-                    right: SharedPrefs.getPower() == true ? 0 : -1.sw,
-                    child: StartPage(
-                      theme: SharedPrefs.getTheme() == true ||
-                          SharedPrefs.getTheme() == null,
-                      wifiGatewayIP: connectionStatus,
-                      power: powerState,
-                      networkInfo: initNetworkInfo(),
+                    Positioned(
+
+
+                        bottom: 0,
+                        child: Container(color:SharedPrefs.getTheme() == true ||
+                            SharedPrefs.getTheme() == null
+                            ? AppColors.lightYellow
+                            : AppColors.greyCopyright , height: 35.sp,width: 1.sw, child:
+                        Row(
+                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Expanded(
+
+                                child: Align( alignment: Alignment.centerRight
+                                    ,child: Image.asset("assets/images/veevoCopyRightImage.png",
+                                      width: 40.sp,height:22.sp ,))),
+                            Expanded(
+                                flex: 2,
+                                child: Padding(
+                                  padding:  EdgeInsets.only(left: 8.0.sp),
+                                  child: Text('Powered by Veevo Tech',style:
+                                  GoogleFonts.poppins(fontWeight: FontWeight.w400,fontSize: 10.sp,color: AppColors.yellow),),
+                                ))
+
+
+                          ],
+                        ), )),
+                    AnimatedPositioned(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInOut,
+                      top: SharedPrefs.getPower() == true ? -1.sh : 0,
+                      left: SharedPrefs.getPower() == true ? 0 : -1.sw,
+                      right: SharedPrefs.getPower() == true ? 0 : -1.sw,
+                      child: StartPage(
+                        theme: SharedPrefs.getTheme() == true ||
+                            SharedPrefs.getTheme() == null,
+                        wifiGatewayIP: connectionStatus,
+                        power: powerState,
+                        networkInfo: initNetworkInfo(),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                )
+
+
+
             ),
           );
         },
       );
     });
   }
-
+  void requestPermission() {
+    Permission.storage.request();
+  }
   Future<void> initNetworkInfo() async {
     String? wifiName,
         wifiBSSID,
@@ -291,6 +349,11 @@ class _MainScreenState extends State<MainScreen> {
       connectionStatus = '$wifiGatewayIP';
     });
 
-    Repository.wifiGateWayIP = '$wifiGatewayIP';
+    setState((){
+
+      Repository.wifiGateWayIP = '$wifiGatewayIP';
+
+
+    });
   }
 }

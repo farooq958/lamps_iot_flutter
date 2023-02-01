@@ -62,7 +62,7 @@ class _IntroductionPageViewState extends State<IntroductionPageView> {
 
               //smooth indicators
               Positioned(
-                bottom: 180.sp,
+                bottom: 170.sp,
                 right: 0.sp,
                 left: 0.sp,
                 child: Container(

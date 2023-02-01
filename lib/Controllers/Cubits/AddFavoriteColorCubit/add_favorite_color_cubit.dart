@@ -12,6 +12,7 @@ class AddFavoriteColorCubit extends Cubit<AddFavoriteColorState> {
   //adding favorite colors data method
   addFavoriteColor({required int? color}) async {
     try {
+      print("colour"+color.toString());
       final forwardedColor = ColorModel(
         red: 0,
         green: 0,
@@ -33,5 +34,10 @@ class AddFavoriteColorCubit extends Cubit<AddFavoriteColorState> {
       emit(AddFavoriteColorError(
           'An error occurred while adding your favorite color'));
     }
+  }
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    return super.close();
   }
 }

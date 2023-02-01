@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,6 @@ import 'package:keptua/Views/Utils/Data/app_colors.dart';
 import 'package:keptua/Views/Utils/Data/app_shared_preferences.dart';
 import 'package:keptua/Views/Utils/PageTransitions/slide_page_transition.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class MainAudioPlayerScreen extends StatefulWidget {
   final bool? theme;
@@ -29,18 +29,19 @@ class MainAudioPlayerScreen extends StatefulWidget {
 }
 
 class _MainAudioPlayerScreenState extends State<MainAudioPlayerScreen> {
+  //final progressStream = BehaviorSubject<WaveformProgress>();
   @override
   void initState() {
+
     super.initState();
-    requestPermission();
-    playSong();
+   // Repository.audioPlayer.dispose();
+   // connectToServer();
+   // playSong();
   }
 
-  void playSong() {}
+  // void playSong() {}
 
-  void requestPermission() {
-    Permission.storage.request();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,9 @@ class _MainAudioPlayerScreenState extends State<MainAudioPlayerScreen> {
       onWillPop: () async {
         //Set Shared preference route
         SharedPrefs.setInitPage(initPage: 'installed');
+        // Repository.audioPlayer.stop();
+        // Repository.audioPlayer.dispose();
+        //context.read<AudioPlayerVisibilityCubit>().visibility(false);
         //navigate to previous screen
         Navigator.push(
           context,
@@ -139,12 +143,13 @@ class _MainAudioPlayerScreenState extends State<MainAudioPlayerScreen> {
 
                                     //music list
                                     MusicList(
-                                      theme: widget.theme,
+                                      theme: widget.theme!,
                                       bottomSheetVisibilityState:
                                           playerBottomSheetVisibilityState,
                                       songItems: songItems,
                                       playPauseState: playPauseState,
                                       searchedList: searchedList,
+                                     // progressStream: progressStream
                                     ),
                                   ],
                                 ),
@@ -163,7 +168,13 @@ class _MainAudioPlayerScreenState extends State<MainAudioPlayerScreen> {
       ),
     );
   }
-
+// Future<void> connectToServer()
+// async {
+//   Socket sc =await Socket.connect(Repository.wifiGateWayIP, 80);
+//   if(await sc.isEmpty)
+//     {}
+//
+// }
   void storeFetchedSongs(
       {required AsyncSnapshot<List<SongModel>> songItems}) async {
     Repository.fetchedSongList = songItems.data!.toList();

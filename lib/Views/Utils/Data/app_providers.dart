@@ -17,6 +17,9 @@ import 'package:keptua/Controllers/Cubits/power_cubit.dart';
 import 'package:keptua/Controllers/Cubits/theme_cubit.dart';
 import 'package:keptua/Controllers/Cubits/waves_cubit.dart';
 
+import '../../../Controllers/Cubits/PositionCubit/position_cubit.dart';
+import '../../../Controllers/Cubits/duration_cubit.dart';
+
 final List<BlocProvider> mainCubitProvidersList = [
   BlocProvider<PowerCubit>(
     create: (context) => PowerCubit(false),
@@ -69,4 +72,6 @@ final List<BlocProvider> mainCubitProvidersList = [
   BlocProvider<ItemWaveCubit>(
     create: (context) => ItemWaveCubit(songItemIndex: 0),
   ),
+  BlocProvider<PositionCubit>(create: (context)=>PositionCubit()),
+  BlocProvider<DurationCubit>(create: (context)=> DurationCubit())
 ];

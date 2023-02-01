@@ -7,7 +7,7 @@ class ScalePageTransition {
     required Alignment alignment,
   }) {
     return PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 500),
+      transitionDuration: const Duration(milliseconds: 0),
       transitionsBuilder: (context, animation, animationTime, child) {
         animation = CurvedAnimation(parent: animation, curve: Curves.easeIn);
         return ScaleTransition(

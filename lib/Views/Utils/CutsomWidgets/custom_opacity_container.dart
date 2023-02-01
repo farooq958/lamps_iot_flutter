@@ -49,6 +49,7 @@ class CustomOpacityContainer extends StatelessWidget {
                   thumbColor: Colors.white,
                   onChanged: (newValue) {
                     SharedPrefs.setOpacity(opacity: newValue.toInt());
+
                     Repository.setOpacity(
                       context: context,
                       gatewayIP: Repository.wifiGateWayIP,
